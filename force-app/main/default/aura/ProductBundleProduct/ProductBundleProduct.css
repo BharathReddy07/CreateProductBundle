@@ -1,0 +1,13 @@
+.THIS .boxx {
+     padding:20px;
+    width:100%;
+    height:200px;
+    border-radius:20px;
+}
+.THIS .slds-card__header{
+        background-color: aliceblue;
+    font:Bold;
+}
+.THIS .Boxsize{
+        width:200px;
+}

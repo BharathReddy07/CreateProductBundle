@@ -1,0 +1,100 @@
+<aura:component controller="ProductBundleProduct"  implements="flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    
+    <aura:attribute name="uniqueParentProducts" type="List"/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String"/>
+    <!-- This attribute will hold the update records from data table-->
+    <aura:attribute name="updatedRecord" type="Object[]" />
+    
+    <aura:attribute name="accounts" type="Product_Bundle__c[]"/>
+    <aura:attribute name="editAccId" type="id"/>
+    <aura:attribute name="viewAccId" type="id"/>
+    <aura:attribute name="isView" type="boolean"/>
+    <aura:attribute name="isEdit" type="boolean"/>
+    
+    <aura:attribute name="PlaceorderBtn" type="boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doOnLoad}"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <!-- nsjjabbjbjbfjbfjbjf -->
+    
+    <aura:attribute name="proBunList" type="List"/>
+    <aura:attribute name="parentproBunList" type="List"/>
+    
+    <!--Calling search component Start-->
+    <c:ProductBundle />	
+    <!--Calling search component End-->
+    
+    <lightning:layout>        
+        <lightning:layoutItem class="boxx" padding="around-large" >           
+            <lightning:card class="slds-text-heading_Bold slds-card_boundary" title="Product Bundle">
+                <div  style="height:300px;">
+                    <div class="slds-scrollable_y" style="height:100%;">
+                        <lightning:accordion >
+                            <aura:iteration items="{!v.uniqueParentProducts}" var="pro">
+                                <lightning:accordionSection name="{!pro.Name}" label="{!pro.Name}">
+                                    
+                                    
+                                    <!-- <lightning:datatable
+                                                                     aura:id="accountDataTable"
+                                                                     columns="{! v.columns }"
+                                                                     data="{!childPro.Child_Product__r.Name }"
+                                                                     keyField="Id"
+                                                                     onsave ="{!c.onSave}"
+                                                                     hideCheckboxColumn="true"
+                                                                     onrowaction="{! c.handleRowAction }" />-->
+                                    
+                                    <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                                        <thead>
+                                            <tr class="slds-text-title--caps">
+                                                <th scope="col">
+                                                    <div class="slds-truncate" Style="Edit" title="Child_Product">Child_Product </div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                                                </th>
+                                                <th><b>Action</b></th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.proBunList}" var="childPro" indexVar="ind">
+                                                <aura:if isTrue="{!pro.Name == childPro.Parent_Product__r.Name}"> 
+                                                    <tr>
+                                                        <th scope="row" data-label="Child_Product">
+                                                            <div class="slds-truncate" title="">{!childPro.Child_Product__r.Name} </div>
+                                                        </th>
+                                                        <td data-label="Quantity">
+                                                            <!-- <div class="slds-truncate" title="">{!childPro.Quantity__c}</div>-->
+                                                            <lightning:input type="number" name="{!ind}" value="{!childPro.Quantity__c}" class="Boxsize"	/>
+                                                        </td>
+                                                        <td data-label="icon" class="slds-col slds-size_1-of-12" onclick="{!c.delete}" id="{!childPro.Id}">
+                                                            <lightning:icon iconName="utility:delete" size="small" />
+                                                        </td>
+                                                        <!-- <button class="slds-button slds-button_icon" type="Delete" onclick="{!c.delete}"  id="{!childPro.Id}">Del</button>
+                                                             <lightning:button title="Remove User"  id="{!childPro.Id}" iconName="utility:delete" variant="bare-inverse" class="slds-m-left_xx-small" onclick="{!c.delete}"/>-->
+                                                        
+                                                        
+                                                    </tr>
+                                                    
+                                                </aura:if>     
+                                                
+                                            </aura:iteration>
+                                            
+                                        </tbody>
+                                        
+                                    </table>
+                                    <lightning:button class="slds-button slds-button_brand slds-m-top_medium" iconName="utility:record_update" variant="UPDATE Quantity" label="UPDATE Quantity" title="UPDATE Quantity" disabled="{!v.PlaceorderBtn}" onclick="{!c.UpdateQuantity}"/>
+                                </lightning:accordionSection>
+                            </aura:iteration>              
+                        </lightning:accordion>
+                    </div>
+                </div>
+            </lightning:card>
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+  </aura:component>

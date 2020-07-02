@@ -1,0 +1,32 @@
+.THIS.slds-page-header{
+    background-color:#4F6A92;
+    color: white;
+    border-radius: 15px;
+}
+.THIS .leftPaddingClass {
+    padding-left: 2rem;
+}
+.THIS .pillSize{
+    width:100%;
+}
+.THIS .errorMissingSelected{
+    background-color:white;
+    color : red;
+}
+.THIS .dark {
+    background-color: #16325c;  
+}
+.THIS .slds-button{
+    background-color:#b0c4df;
+    width:60px;
+    color: white;
+}
+.THIS .quant{
+    padding-left:26px;
+   width:225px;
+}
+.THIS .slds-modal__header{
+    background-color:#A7B8D1;
+    color: white;
+    border-radius: 8px;
+}
